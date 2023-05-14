@@ -3,13 +3,13 @@ from grafos import Grafo
 
 grafo = Grafo()
 
-grafo.adicionar_predio("Prédio da Reitoria")
-grafo.adicionar_predio("Biblioteca Central")
-grafo.adicionar_predio("ICC")
-grafo.adicionar_predio("FT")
-grafo.adicionar_predio("FE")
-grafo.adicionar_predio("FS")
-grafo.adicionar_predio("FT")
+grafo.adicionar_predio("Prédio da Reitoria", (0,1))
+grafo.adicionar_predio("Biblioteca Central", (1,0))
+grafo.adicionar_predio("ICC", (2,0))
+grafo.adicionar_predio("FT", (0,3))
+grafo.adicionar_predio("FE", (1,1))
+grafo.adicionar_predio("FS", (2,2))
+grafo.adicionar_predio("FT", (3,3))
 
 grafo.adicionar_conexao("ICC", "FT", 3)
 grafo.adicionar_conexao("ICC", "FE", 2)

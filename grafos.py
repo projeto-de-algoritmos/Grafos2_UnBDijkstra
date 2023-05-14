@@ -1,12 +1,15 @@
 import heapq
+import math
 
 
 class Grafo:
     def __init__(self):
         self.adjacencias = {}
+        self.coordenadas = {}
 
-    def adicionar_predio(self, predio):
+    def adicionar_predio(self, predio, coordenadas):
         self.adjacencias[predio] = {}
+        self.coordenadas[predio] = coordenadas
 
     def adicionar_conexao(self, predio1, predio2, peso):
         self.adjacencias[predio1][predio2] = peso
@@ -14,6 +17,11 @@ class Grafo:
 
     def obter_conexoes(self, predio):
         return self.adjacencias[predio]
+
+    def calcular_distancia_euclidiana(self, predio1, predio2):
+        x1, y1 = self.coordenadas[predio1]
+        x2, y2 = self.coordenadas[predio2]
+        return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
 
     def dijkstra(self, predio_origem, predio_destino):
         distancia = {predio: float('inf') for predio in self.adjacencias}

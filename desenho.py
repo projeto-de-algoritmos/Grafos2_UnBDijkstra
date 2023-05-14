@@ -49,7 +49,7 @@ def desenhar_grafo(grafo):
                         if len(selected_nodes) < 2:
                             selected_nodes.append(selected_node)
                             if len(selected_nodes) == 2:
-                                # Faça algo com os dois nós selecionados
+                                arestas_menor_caminho = []
                                 print("Nós selecionados:", selected_nodes)
                                 start = selected_nodes[0]
                                 fim = selected_nodes[1]
@@ -82,6 +82,7 @@ def desenhar_grafo(grafo):
             text = font.render(predio, True, BLACK)
             text_rect = text.get_rect(center=(x, y + 30))  # Ajuste a posição vertical do texto
             screen.blit(text, text_rect)
+
 
         for predio, conexoes in grafo.adjacencias.items():
             for destino, peso in conexoes.items():

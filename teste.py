@@ -1,3 +1,4 @@
+from desenho import desenhar_grafo
 from grafos import Grafo
 
 
@@ -21,3 +22,5 @@ predio_destino = "FE"
 distancia = grafo.dijkstra(predio_origem, predio_destino)
 
 print("Menor distância entre", predio_origem, "e", predio_destino + ":", distancia)
+
+desenhar_grafo(grafo)

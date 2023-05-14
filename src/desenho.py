@@ -8,7 +8,6 @@ RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 WIDTH, HEIGHT = 1300, 1000
 
-
 def get_selected_node(mouse_pos, grafo):
     for node, coordinates in grafo.coordenadas.items():
         x, y = coordinates
@@ -32,33 +31,8 @@ def setup_screen():
 
     return screen
 
-def print_infos(selected_nodes, grafo, font, screen, distance):
-    if len(selected_nodes) > 0:
-        start_node = selected_nodes[0]
-        start_coordinates = grafo.coordenadas[start_node]
-        start_x, start_y = start_coordinates
-        start_x = (start_x + 1) * 100
-        start_y = (start_y + 1) * 100
-        start_text = font.render("Start: " + start_node, True, BLACK)
-        start_text_rect = start_text.get_rect(bottomright=(1300, HEIGHT - 60))
-        screen.blit(start_text, start_text_rect)
 
-    if len(selected_nodes) > 1:
-        end_node = selected_nodes[1]
-        end_coordinates = grafo.coordenadas[end_node]
-        end_x, end_y = end_coordinates
-        end_x = (end_x + 1) * 100
-        end_y = (end_y + 1) * 100
-        end_text = font.render("End: " + end_node, True, BLACK)
-        end_text_rect = end_text.get_rect(bottomright=(1300, HEIGHT - 40))
-        screen.blit(end_text, end_text_rect)
-
-    if len(selected_nodes) == 2:
-        distance_text = font.render("Distância: " + str(distance), True, BLACK)
-        distance_text_rect = distance_text.get_rect(bottomright=(1300, HEIGHT - 20))
-        screen.blit(distance_text, distance_text_rect)
-
-def draw_graph(grafo, selected_nodes, screen, short_path_edges):
+def draw_graph(grafo, selected_nodes, screen, short_path_edges, distance):
     for building in grafo.adjacencias.keys():
             coordinates = grafo.coordenadas[building]
             x, y = coordinates
@@ -88,7 +62,30 @@ def draw_graph(grafo, selected_nodes, screen, short_path_edges):
                 pygame.draw.line(screen, RED, (x1, y1), (x2, y2), 4)
             else:
                 pygame.draw.line(screen, BLACK, (x1, y1), (x2, y2), 2)
-    return font
+    if len(selected_nodes) > 0:
+        start_node = selected_nodes[0]
+        start_coordinates = grafo.coordenadas[start_node]
+        start_x, start_y = start_coordinates
+        start_x = (start_x + 1) * 100
+        start_y = (start_y + 1) * 100
+        start_text = font.render("Start: " + start_node, True, BLACK)
+        start_text_rect = start_text.get_rect(bottomright=(700, HEIGHT - 60))
+        screen.blit(start_text, start_text_rect)
+
+    if len(selected_nodes) > 1:
+        end_node = selected_nodes[1]
+        end_coordinates = grafo.coordenadas[end_node]
+        end_x, end_y = end_coordinates
+        end_x = (end_x + 1) * 100
+        end_y = (end_y + 1) * 100
+        end_text = font.render("End: " + end_node, True, BLACK)
+        end_text_rect = end_text.get_rect(bottomright=(700, HEIGHT - 40))
+        screen.blit(end_text, end_text_rect)
+
+    if len(selected_nodes) == 2:
+        distance_text = font.render("Distância: " + str(distance), True, BLACK)
+        distance_text_rect = distance_text.get_rect(bottomright=(700, HEIGHT - 20))
+        screen.blit(distance_text, distance_text_rect)
 
 
 def graph_ainda_preciso(grafo):
@@ -118,15 +115,13 @@ def graph_ainda_preciso(grafo):
                                 distance, path = grafo.dijkstra(start, end)
                                 for i in range(len(path) - 1):
                                     origin = path[i]
-                                    distance = path[i + 1]
-                                    short_path_edges.append((origin, distance))
+                                    aux_distance = path[i + 1]
+                                    short_path_edges.append((origin, aux_distance))
                         else:
                             selected_nodes = [selected_node]
-
         screen.fill(WHITE)
 
-        font = draw_graph(grafo, selected_nodes, screen, short_path_edges)
-        print_infos(selected_nodes, grafo, font, screen, distance)
+        draw_graph(grafo, selected_nodes, screen, short_path_edges, distance)
 
         pygame.display.flip()
 

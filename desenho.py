@@ -18,7 +18,7 @@ def desenhar_grafo(grafo):
     pygame.init()
 
     # Set the width and height of the window
-    width, height = 800, 600
+    width, height = 1400, 1000
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("Graph Drawing")
 

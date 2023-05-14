@@ -26,6 +26,8 @@ class Grafo:
     def dijkstra(self, predio_origem, predio_destino):
         distancia = {predio: float('inf') for predio in self.adjacencias}
         distancia[predio_origem] = 0
+        predecessores = {predio: None for predio in self.adjacencias}
+
         fila = [(0, predio_origem)]
         while fila:
             dist, predio = heapq.heappop(fila)
@@ -37,5 +39,13 @@ class Grafo:
                 nova_distancia = dist + peso
                 if nova_distancia < distancia[adjacente]:
                     distancia[adjacente] = nova_distancia
+                    predecessores[adjacente] = predio
                     heapq.heappush(fila, (nova_distancia, adjacente))
-        return distancia[predio_destino]
+
+        caminho = [predio_destino]
+        atual = predio_destino
+        while predecessores[atual]:
+            atual = predecessores[atual]
+            caminho.insert(0, atual)
+
+        return distancia[predio_destino], caminho

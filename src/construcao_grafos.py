@@ -1,5 +1,5 @@
 def grafos_basico(grafo):
-    grafo.adicionar_predio("S1", (1,1))
+    grafo.adicionar_predio("S1", (0,0))
     grafo.adicionar_predio("S2", (2,1))
     grafo.adicionar_predio("S3", (3,1))
     grafo.adicionar_predio("S4", (4,1))

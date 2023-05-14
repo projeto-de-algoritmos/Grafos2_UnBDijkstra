@@ -23,7 +23,9 @@ def get_selected_node(mouse_pos, grafo):
 def setup_screen():
 
     pygame.init()
+
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
     pygame.display.set_caption("dijkstra - FGA")
 
     screen.fill(WHITE)
@@ -65,7 +67,7 @@ def draw_graph(grafo, selected_nodes, screen, short_path_edges):
             node_color = BLACK
             if building in selected_nodes:
                 node_color = RED if len(selected_nodes) == 1 else GREEN
-            pygame.draw.circle(screen, node_color, (x, y), 20)
+            pygame.draw.circle(screen, node_color, (x, y), 10)
             font = pygame.font.Font(None, 20)
             text = font.render(building, True, BLACK)
             text_rect = text.get_rect(center=(x, y + 30))

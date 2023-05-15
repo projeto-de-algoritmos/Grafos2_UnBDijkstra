@@ -1,4 +1,4 @@
-# Menor Caminho Dacry
+# Unb_Dijkstra
 
 **Número da Lista**: 30<br>
 **Conteúdo da Disciplina**: Grafos2<br>

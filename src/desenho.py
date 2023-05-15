@@ -26,71 +26,15 @@ def setup_screen():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
     pygame.display.set_caption("dijkstra - FGA")
-    background_image = pygame.image.load("darcy.png")
+    background_image = pygame.image.load("src/asset/img/darcy.png")
     background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
-    
+
     screen.blit(background_image, (0, 0))
 
     return screen
 
 
-def draw_graph(grafo, selected_nodes, screen, short_path_edges, distance):
-    for building in grafo.adjacencias.keys():
-            coordinates = grafo.coordenadas[building]
-            x, y = coordinates
-            x = (x + 1) * 100
-            y = (y + 1) * 100
-            node_color = BLACK
-            if building in selected_nodes:
-                node_color = RED if len(selected_nodes) == 1 else GREEN
-            pygame.draw.circle(screen, node_color, (x, y), 5)
-            font = pygame.font.Font(None, 20)
-            text = font.render(building, True, BLACK)
-            text_rect = text.get_rect(center=(x, y + 30))
-            screen.blit(text, text_rect)
-
-    for building, connections in grafo.adjacencias.items():
-        for destiny, weight in connections.items():
-            origin_coordinates = grafo.coordenadas[building]
-            destination_coordinates = grafo.coordenadas[destiny]
-            x1, y1 = origin_coordinates
-            x2, y2 = destination_coordinates
-            x1 = (x1 + 1) * 100
-            y1 = (y1 + 1) * 100
-            x2 = (x2 + 1) * 100
-            y2 = (y2 + 1) * 100
-
-            if (building, destiny) in short_path_edges or (destiny, building) in short_path_edges:
-                pygame.draw.line(screen, RED, (x1, y1), (x2, y2), 4)
-            else:
-                pygame.draw.line(screen, BLACK, (x1, y1), (x2, y2), 2)
-    if len(selected_nodes) > 0:
-        start_node = selected_nodes[0]
-        start_coordinates = grafo.coordenadas[start_node]
-        start_x, start_y = start_coordinates
-        start_x = (start_x + 1) * 100
-        start_y = (start_y + 1) * 100
-        start_text = font.render("Start: " + start_node, True, BLACK)
-        start_text_rect = start_text.get_rect(bottomright=(700, HEIGHT - 60))
-        screen.blit(start_text, start_text_rect)
-
-    if len(selected_nodes) > 1:
-        end_node = selected_nodes[1]
-        end_coordinates = grafo.coordenadas[end_node]
-        end_x, end_y = end_coordinates
-        end_x = (end_x + 1) * 100
-        end_y = (end_y + 1) * 100
-        end_text = font.render("End: " + end_node, True, BLACK)
-        end_text_rect = end_text.get_rect(bottomright=(700, HEIGHT - 40))
-        screen.blit(end_text, end_text_rect)
-
-    if len(selected_nodes) == 2:
-        distance_text = font.render("Distância: " + str(distance), True, BLACK)
-        distance_text_rect = distance_text.get_rect(bottomright=(700, HEIGHT - 20))
-        screen.blit(distance_text, distance_text_rect)
-
-
-def graph_ainda_preciso(grafo):
+def draw_graph(grafo):
 
     screen = setup_screen()
 
@@ -112,6 +56,7 @@ def graph_ainda_preciso(grafo):
                             selected_nodes.append(selected_node)
                             if len(selected_nodes) == 2:
                                 short_path_edges = []
+                                distance = 0
                                 start = selected_nodes[0]
                                 end = selected_nodes[1]
                                 distance, path = grafo.dijkstra(start, end)
@@ -122,7 +67,37 @@ def graph_ainda_preciso(grafo):
                         else:
                             selected_nodes = [selected_node]
 
-        draw_graph(grafo, selected_nodes, screen, short_path_edges, distance)
+        for building in grafo.adjacencias.keys():
+                coordinates = grafo.coordenadas[building]
+                x, y = coordinates
+                x = (x + 1) * 100
+                y = (y + 1) * 100
+                node_color = BLACK
+                if building in selected_nodes:
+                    node_color = RED if len(selected_nodes) == 1 else GREEN
+                pygame.draw.circle(screen, node_color, (x, y), 5)
+
+        for building, connections in grafo.adjacencias.items():
+            for destiny, weight in connections.items():
+                origin_coordinates = grafo.coordenadas[building]
+                destination_coordinates = grafo.coordenadas[destiny]
+                x1, y1 = origin_coordinates
+                x2, y2 = destination_coordinates
+                x1 = (x1 + 1) * 100
+                y1 = (y1 + 1) * 100
+                x2 = (x2 + 1) * 100
+                y2 = (y2 + 1) * 100
+
+                if (building, destiny) in short_path_edges or (destiny, building) in short_path_edges:
+                    pygame.draw.line(screen, RED, (x1, y1), (x2, y2), 4)
+                else:
+                    pygame.draw.line(screen, BLACK, (x1, y1), (x2, y2), 2)
+        font = pygame.font.Font('src/asset/font/arial.ttf', 20)
+
+        if len(selected_nodes) == 2:
+            distance_text = font.render("Distância: " + str(distance), True, BLACK)
+            distance_text_rect = distance_text.get_rect(bottomright=(1300, HEIGHT - 20))
+            screen.blit(distance_text, distance_text_rect)
 
         pygame.display.flip()
 

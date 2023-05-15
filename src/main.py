@@ -1,5 +1,5 @@
 from construcao_grafos import grafos_basico
-from desenho import graph_ainda_preciso
+from desenho import draw_graph
 from grafos import Grafo
 
 
@@ -7,4 +7,4 @@ grafo = Grafo()
 
 grafos_basico(grafo)
 
-graph_ainda_preciso(grafo)
+draw_graph(grafo)

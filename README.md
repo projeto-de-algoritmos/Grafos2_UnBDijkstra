@@ -1,44 +1,42 @@
-**!! Atenção: Renomeie o seu repositório para (Tema)_(NomeDoProjeto). !!** 
+# Menor Caminho Dacry
 
-Temas:
- - Grafos1
- - Grafos2
- - PD
- - D&C
- - Greed
- - Final 
- 
- **!! *Não coloque os nomes dos alunos no título do repositório*. Exemplo de título correto: Grafos2_Labirinto-do-Minotauro !!**
- 
- (Apague essa seção)
-
-# NomedoProjeto
-
-**Número da Lista**: X<br>
-**Conteúdo da Disciplina**: XXXXXXXXXX<br>
+**Número da Lista**: 30<br>
+**Conteúdo da Disciplina**: Grafos2<br>
 
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 20/2028211  |  Antônio Aldísio de Sousa Alves Ferreira Filho |
+| 19/0048221  |  Rodrigo Balbino Azevedo de Brito |
 
-## Sobre 
-Descreva os objetivos do seu projeto e como ele funciona. 
+## Sobre
+O objetivo do projeto é utilizar o Pygame, uma biblioteca de desenvolvimento de jogos em Python, juntamente com o algoritmo de Dijkstra para demonstrar o menor caminho no campus Darcy Ribeiro.
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
 
-## Instalação 
-**Linguagem**: xxxxxx<br>
-**Framework**: (caso exista)<br>
-Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
+![Screenshot_1](src/asset/img/01.png)
+![Screenshot_2](src/asset/img/02.png)
+<br>
+![Screenshot_2](src/asset/img/03.png)
 
-## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
 
-## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
+
+## Instalação
+**Linguagem**: Python 3.10<br>
+
+## Uso
+
+Para instalar os pacotes necessários
+```
+pip3 install -r requirements.txt
+```
+
+Para rodar o projeto
+
+```
+python3 src/main.py
+```
+
 
 
 

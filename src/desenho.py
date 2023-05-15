@@ -26,8 +26,10 @@ def setup_screen():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
     pygame.display.set_caption("dijkstra - FGA")
-
-    screen.fill(WHITE)
+    background_image = pygame.image.load("darcy.png")
+    background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
+    
+    screen.blit(background_image, (0, 0))
 
     return screen
 
@@ -41,7 +43,7 @@ def draw_graph(grafo, selected_nodes, screen, short_path_edges, distance):
             node_color = BLACK
             if building in selected_nodes:
                 node_color = RED if len(selected_nodes) == 1 else GREEN
-            pygame.draw.circle(screen, node_color, (x, y), 10)
+            pygame.draw.circle(screen, node_color, (x, y), 5)
             font = pygame.font.Font(None, 20)
             text = font.render(building, True, BLACK)
             text_rect = text.get_rect(center=(x, y + 30))
@@ -119,7 +121,6 @@ def graph_ainda_preciso(grafo):
                                     short_path_edges.append((origin, aux_distance))
                         else:
                             selected_nodes = [selected_node]
-        screen.fill(WHITE)
 
         draw_graph(grafo, selected_nodes, screen, short_path_edges, distance)
 

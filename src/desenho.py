@@ -26,7 +26,7 @@ def setup_screen():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
     pygame.display.set_caption("dijkstra - FGA")
-    background_image = pygame.image.load("src/asset/img/darcy.png")
+    background_image = pygame.image.load("darcy.png")
     background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 
     screen.blit(background_image, (0, 0))
@@ -92,7 +92,7 @@ def draw_graph(grafo):
                     pygame.draw.line(screen, RED, (x1, y1), (x2, y2), 4)
                 else:
                     pygame.draw.line(screen, BLACK, (x1, y1), (x2, y2), 2)
-        font = pygame.font.Font('src/asset/font/arial.ttf', 20)
+        font = pygame.font.Font('arial.ttf', 20)
 
         if len(selected_nodes) == 2:
             distance_text = font.render("Distância: " + str(distance), True, BLACK)

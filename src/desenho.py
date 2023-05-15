@@ -25,7 +25,7 @@ def setup_screen():
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
-    pygame.display.set_caption("dijkstra - FGA")
+    pygame.display.set_caption("UNB - dijkstra")
     background_image = pygame.image.load("darcy.png")
     background_image = pygame.transform.scale(background_image, (WIDTH, HEIGHT))
 
